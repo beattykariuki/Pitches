@@ -1,0 +1,4 @@
+/virtual
+/migrations
+*pyc
+*.sh
