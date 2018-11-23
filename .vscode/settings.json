@@ -1,3 +1,5 @@
 {
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "python.formatting.provider": "autopep8",
+    "python.pythonPath": "virtual/bin/python"
 }
