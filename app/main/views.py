@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required,current_user
-from ..models import User,Pitch,Category,Comment,Upvote,Downvote
+from ..models import User,Pitch,Category
 from .forms import UpdateProfile,CommentForm,PitchForm
 from .. import db,photos
 import markdown2
@@ -11,40 +11,40 @@ import markdown2
 def index():
 
     title = 'Welome to Pitch Bubbles'
-    pitchs = Pitch.get_all_pitches()
+    pitches = Pitch.query.all()
     categories = Category.get_categories()
     return render_template('index.html',title = title,pitches = pitches,categories = categories)
 
 #categories section
 @main.route('/pickup/pitchs')
-def pick_up():
-    pitchs = Pitch.get_all_pitches()
-    title = 'Pitch your best shots'
-    return render_template('pickup.html',title = title,pitchs = pitchs)
+def business_up():
+    pitch = Pitch.get_all_pitches()
+    title = 'Business pitches'
+    return render_template('pickup.html',title = title,pitch = pitchs)
 
 @main.route('/interview/pitchs')
-def interview_pitch():
+def health_pitch():
     pitchs = Pitch.get_all_pitches()
     title = 'health pitches'
     return render_template('interview.html',title = title,pitchs = pitchs)
 
 @main.route('/promotion/pitchs')
-def promotion_pitch():
+def fashion_pitch():
     pitches = Pitch.get_all_pitches()
     title = 'Fashion Pitches'
     return render_template('promotion.html',title = title,pitchs = pitchs)
 
 @main.route('/product/pitchs')
-def product_pitch():
+def music_pitch():
     pitchs = Pitch.get_all_pitches()
     title = 'Music Pitches'
     return render_template('product.html',title = title,pitchs = pitchs)
 
-@main.route('/product/pitchs')
-def product_pitch():
-    pitchs = Pitch.get_all_pitches()
-    title = 'Business Pitches'
-    return render_template('product.html',title = title,pitchs = pitchs)
+# @main.route('/product/pitchs')
+# def product_pitch():
+#     pitchs = Pitch.get_all_pitches()
+#     title = 'Business Pitches'
+#     return render_template('product.html',title = title,pitchs = pitchs)
 
 
 
@@ -57,14 +57,13 @@ def new_pitch():
         abort( 404 )
 
     if form.validate_on_submit():
-        pitch= form.content.data, form.category_id.data
-        new_pitch= Pitch(pitch= pitch)
+        new_pitch= Pitch(pitch=form.content.data, category_id=form.category_id.data)
     
 
         new_pitch.save_pitch()
         return redirect(url_for('main.index'))
 
-    return render_template('new_pitch.html', new_pitch_form= form, category= category)
+    return render_template('new_pitch.html', new_pitch_form= form)
 
 
 @main.route('/category/<int:id>')
@@ -135,15 +134,4 @@ def update_profile(uname):
     return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form =form)
-
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
-def update_pic(username):
-    user = User.query.filter_by(username = username).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path
-        db.session.commit()
-    return redirect(url_for('main.profile',username=username))
 
