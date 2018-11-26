@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="thumbnail">
+            <p class="others">Other comments:</p>
+            <ol>
+                {% for item in comments %}
+                <li>{% endblock %}
+                    <p class="comment"><b>{{item.comment}}</b></p>
+                    <p class="usernames">Comment by: {{item.username}}</p>
+                </li>
+                {% endfor %}
+        </div>
+</body>
+
+{% endblock %}

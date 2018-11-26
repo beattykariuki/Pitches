@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<button type="button"><a href=/pitch/new/'>new pitch</a></button>
+<div class="header"><h2>{{ pitch.title}}</h2></div>
+<div class="card-text"><p>{{ pitch.content}}</p>
+
+</div>
+{% endblock %}

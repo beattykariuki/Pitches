@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+
+
+<body>
+    <div class="container main_page">
+        <br>
+        <br>
+        <div class="row">
+            <br>
+            <br>
+
+            <p class="pitcher">Pitcher</p>
+
+
+            <div class="well">
+                <div>
+                    <a href="{{url_for('main.new_pitch')}}">
+                        <p class="title">Add New Pitch &nbsp;<span class="glyphicon glyphicon-plus"></span></p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    
+        <br>
+        <br>
+
+        <div class="container">
+            <p class="latest"><b>Posted Pitches :</b></p>
+            <div class="thumbnail pitches">
+                {{categories.categories|upper}} PITCHES
+                <p class="pitches">{{macro.displayPitches(pitchs)}}</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <p class="userr"> {{user.username| capitalize}} </p>
+
+
+            {% if user.bio %}
+            <p class="bio"> {{user.bio}}</p>
+            {%else%}
+            <p class="bio"> {{user.username| capitalize}} has no bio </p>
+            {% endif %}
+        </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

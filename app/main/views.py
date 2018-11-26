@@ -40,11 +40,11 @@ def music_pitch():
     title = 'Music Pitches'
     return render_template('product.html',title = title,pitchs = pitchs)
 
-# @main.route('/product/pitchs')
-# def product_pitch():
-#     pitchs = Pitch.get_all_pitches()
-#     title = 'Business Pitches'
-#     return render_template('product.html',title = title,pitchs = pitchs)
+@main.route('/product/pitchs')
+def product_pitch():
+    pitchs = Pitch.get_all_pitches()
+    title = 'Business Pitches'
+    return render_template('product.html',title = title,pitchs = pitchs)
 
 
 
@@ -60,7 +60,7 @@ def new_pitch():
         new_pitch= Pitch(pitch=form.content.data, category_id=form.category_id.data)
     
 
-        new_pitch.save_pitch()
+        # new_pitch.save_pitch()
         return redirect(url_for('main.index'))
 
     return render_template('new_pitch.html', new_pitch_form= form)

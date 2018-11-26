@@ -1,0 +1,35 @@
+<div class="navbar navbar-inverse" role="navigation" style="background-color:rgb(0, 0, 56); border:black;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"> <a href="/" class="btn btn-md buttons">
+                    <span class="glyphicon glyphicon-home"></span> Home
+                </a></a>
+            &nbsp;
+            <a href="{{url_for('main.index')}}">
+                <button type="button" class="btn btn-md buttons"><span class="glyphicon glyphicon-chevron-left"> Back</span>
+                </button>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                <li><a href="{{url_for('main.profile',uname=current_user.username)}}" class="user"><span
+                            class="glyphicon glyphicon-user"></span> &nbsp;{{current_user.username}}</a></li>
+                <li><a href="{{url_for('auth.logout')}}" class="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log
+                        out</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}" class="login"><span class="glyphicon glyphicon-log-in"></span>&nbsp;
+                        Log in</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</div>

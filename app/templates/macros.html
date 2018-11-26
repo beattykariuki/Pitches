@@ -1,0 +1,50 @@
+{% macro displayPitches(pitches_list) %}
+
+{% for pitch in pitches_list %}
+<br>
+<div class="thumbnail">
+    <p>{{pitch.pitch}}</p>
+    <p>{{pitch.category}}</p>
+    <br>
+    <a href="{{url_for('main.new_comment',id=pitch.id)}}">Comment on Pitch:</a>&nbsp;&nbsp;|
+    <a href="{{url_for('main.view_comments',id=pitch.id)}}">Other Comments</a>&nbsp;&nbsp;|
+</div>
+{% endfor %}
+
+{% endmacro %}
+
+<br>
+<br>
+<br>
+{% macro displayComments(list_of_comments) %}
+{% for comment in list_of_comments %}
+<div class="row">
+    <br>
+    <br>
+
+    <div class="col-xs-2 col-sm-2 col-md-4 col-lg-4">
+        <h4>Pitch Author</h4>
+        <p>{{comment.user.username}}</p>
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
+        <h2> <a href="{{url_for('main.single_comment',id=comment.id)}}">{{comment.pitch_title}}</a> </h2>
+    </div>
+</div>
+
+{% endfor %}
+{% endmacro %}
+<br>
+<br>
+
+{% macro displayPitchesInCategories(pitches,id)%}
+<br>
+<br>
+{% for pitch in pitches %}
+{% if pitch.category_id==id%}
+    <p>{{pitch.pitch}}</p>
+    <a href="{{url_for('main.new_comment',id=pitch.id)}}">Add a Comment</a>&nbsp;&nbsp;|
+    <a href="{{url_for('main.view_comments',id=pitch.id)}}">View Other Comments</a>&nbsp;&nbsp;|
+</div>
+{% endif%}
+{% endfor %}
+{% endmacro %}

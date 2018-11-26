@@ -1,0 +1,20 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{{ simplemde.css}}
+{{ simplemde.js }}
+
+
+{% endblock %}
+{% block content %}
+
+<body>
+
+</body>
+{% endblock %}

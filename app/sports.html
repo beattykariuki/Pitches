@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <p class="sports">Sports Pitches : </p>
+        <br>
+        <br>
+        <a href="{{url_for('main.new_pitch')}}" class="write">Write a new pitch</a>
+
+
+        <div class="pitch-results">
+
+            {{macro.displayPitchesInCategories(pitches,Sports Pitch)}}
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+hello {{user.username}}
+Welcome to Pitch Bubbles
+you have just been signed in and you are welcome to Pitch Bubbles whereby you will be able to pitch anything you want.
